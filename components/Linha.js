@@ -7,7 +7,8 @@ const Linha = ({item})=>{
     const navigation = useNavigation();
     return(
         <TouchableOpacity
-            onPress={()=>{navigation.navigate('Description', item)}}
+            onPress={()=>{ navigation.navigate('Description', item) }}
+            onLongPress={()=>{ navigation.navigate('Edit', item) }}
         >
             <View style={style.content}>
                 <View style={style.line}></View>            

@@ -117,6 +117,17 @@ const Login = ()=>{
                 }
                 onPress={auth}
             />
+            <Button
+                title='Criar conta'
+                icon={
+                    <Icon
+                        name='user-plus'
+                        size={20}
+                        color="#fff"
+                    />
+                }
+                onPress={() => navigation.navigate('CreateUser')}
+            />
         </View>
     );
 }

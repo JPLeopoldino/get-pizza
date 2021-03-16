@@ -4,7 +4,7 @@ import { Linha } from '../../components/Linha';
 import { Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
 import styles from './styles';
@@ -18,6 +18,7 @@ import { SpringUtils } from 'react-native-reanimated';
 
 const App = ()=>{
 
+    const isFocused = useIsFocused();
     const navigation = useNavigation();
     const [dados, setDados] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -66,7 +67,7 @@ const App = ()=>{
     useEffect(()=>{
         loadingData();
         getData();
-    },[token]);
+    }, [token, isFocused]);
 
   return(
       <View style={styles.content}>
