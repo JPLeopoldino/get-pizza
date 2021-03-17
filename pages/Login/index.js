@@ -121,7 +121,7 @@ const Login = ()=>{
                 title='Criar conta'
                 icon={
                     <Icon
-                        name='user-plus'
+                        name='person-add'
                         size={20}
                         color="#fff"
                     />
