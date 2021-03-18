@@ -7,10 +7,12 @@ import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native'; //hooks
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
+import useAuth from '../../hooks/useAuth';
 
 const Login = ()=>{
 
     const navigation = useNavigation();
+    const authentication = useAuth();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [eye, setEye] = useState(true);
@@ -21,7 +23,7 @@ const Login = ()=>{
                 userName: userName,
                 password: password
             });
-            setDataStorage('token', response.data.token);
+            setDataStorage('auth', JSON.stringify(response.data));
         } catch (error) {
             Toast.show({
                 text1: 'Erro',
@@ -57,7 +59,7 @@ const Login = ()=>{
 
     const getDataStorage = async ()=>{
         try {
-            const token = await AsyncStorage.getItem('token');
+            const token = await AsyncStorage.getItem('auth');
             if(token !== null){
                 navigation.navigate('Home');
             }
@@ -67,7 +69,10 @@ const Login = ()=>{
     }
 
     useEffect(()=>{
-        getDataStorage();
+        // getDataStorage();
+        if (authentication?.token != ''){
+            navigation.navigate('Home');
+        }
     }, []);
 
     return(
